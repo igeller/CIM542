@@ -9,7 +9,7 @@ SOS signal working, with a 3 second delay between "rounds"
 
 
 ### Code
-``` ino
+```ino
 int ledPin = 3;
 int time1 = 500;
 int time2 = 300;
