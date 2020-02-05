@@ -2,3 +2,5 @@
  Physical Computing
 
 [Homework](/Homework)
+[Projects](/Projects)
+[In] (/InClass)
