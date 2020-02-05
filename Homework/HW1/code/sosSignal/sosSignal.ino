@@ -1,20 +1,8 @@
-# HW1: SOS Signal
-
-Create an SOS Signal using an LED and the skills learned in class.
-
-### Video
-SOS signal working, with a 3 second delay between "rounds"
-
-![video](/Homework/HW1/media/video/sosrun.gif)
-
-
-### Code
-``` ino
 int ledPin = 3;
 int time1 = 500;
 int time2 = 300;
 int time3 = 1500;
-
+   
 void setup() {
   // put your setup code here, to run once:
   pinMode(ledPin, OUTPUT);
@@ -67,4 +55,3 @@ void loop() {
 
   delay(3000);
 }
-```
