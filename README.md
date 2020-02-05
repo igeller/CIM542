@@ -3,4 +3,4 @@
 
 [Homework](/Homework)
 [Projects](/Projects)
-[In] (/InClass)
+[In Class](/InClass)
