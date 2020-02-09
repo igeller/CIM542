@@ -21,6 +21,7 @@ I used a 3d pentagon to create the "shade" for the lights. I cut stars, moons, a
 ![pentagonBuilt](Projects/Project1/media/photos/pentagon3D4.HEIC)
 3. write code for the lights to fade
 4. wire up the breadboards
-# add mimages
+# add iimages
 5. extend leds and rewire
 6. run
+![video](Projects/Project1/media/videos/nightlight.gif)
