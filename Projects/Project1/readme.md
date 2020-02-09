@@ -24,4 +24,4 @@ I used a 3d pentagon to create the "shade" for the lights. I cut stars, moons, a
 # add iimages
 5. extend leds and rewire
 6. run
-![video](media/videos/nightlight.gif){:width="250px"}
+![video](media/videos/nightlight.gif){:height="100px"}
