@@ -1,3 +1,6 @@
+
+//pins with squigly ~  are pins that we can do fades in
+
 int counter = 0;
 
 long pMillis = 0;
