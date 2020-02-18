@@ -1,15 +1,8 @@
-/*
-  DigitalReadSerial
 
-  Reads a digital input on pin 2, prints the result to the Serial Monitor
+int pushButton = 2;// digital pin 2 has a pushbutton attached to it. Give it a name:
+int ledPin = 3;
 
-  This example code is in the public domain.
-
-  http://www.arduino.cc/en/Tutorial/DigitalReadSerial
-*/
-
-// digital pin 2 has a pushbutton attached to it. Give it a name:
-int pushButton = 2;
+boolean pressed = false;
 
 // the setup routine runs once when you press reset:
 void setup() {
@@ -17,6 +10,8 @@ void setup() {
   Serial.begin(9600);
   // make the pushbutton's pin an input:
   pinMode(pushButton, INPUT);
+
+  pinMode(ledPin, OUTPUT);
 }
 
 // the loop routine runs over and over again forever:
@@ -26,4 +21,5 @@ void loop() {
   // print out the state of the button:
   Serial.println(buttonState);
   delay(1);        // delay in between reads for stability
+  digitalWrite(ledPin, buttonState); //high = 1 and low = 0 so since button state is 1 or 0 we replace
 }
