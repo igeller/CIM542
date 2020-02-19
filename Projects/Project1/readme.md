@@ -1,82 +1,33 @@
-# Project 1: Light and Emotion
+# Project 1: Lulled - Representing Emotion
 
 #### Project Info:
-The goal of the the project was to combine our knowledge of led programming and the circuit cutter to represent an emotion. The emotion I chose to represent is **lulled** (meaning calm down, quiet).
+The goal of the the project was to combine our knowledge of led programming and the circuit cutter to represent an emotion. The emotion I chose to represent is **lulled** (meaning calm down, quiet). 
 
-To represent the emotion of being pulled into sleep i generated a nightlight with a calming on and off sequence.
+To represent the emotion of being lulled into sleep I generated a nightlight with a calming on and off sequence.
 
+<br>
 
-#### Process
-I used a 3d pentagon to create the "shade" for the lights. I cut stars, moons, and clouds into the panels that would appear on the upper half, with the intention that the light would shine to the walls in such shapes.
+#### Video
 
-# help! not showing my images when I try them as png or jpg or heic
+<br>
 
-1. flat shape with patterns cut out
-![photo](/Projects/Project1/media/photos/pentagonflat.HEIC)
-![patternZoomed](Projects/Project1/media/photos/pentagonflatzoomed.png)
-2. build shape
-![pentagonBuilt](Projects/Project1/media/photos/pentagon3D1.jpg)
-![pentagonBuilt](Projects/Project1/media/photos/pentagon3D2.HEIC)
-![pentagonBuilt](Projects/Project1/media/photos/pentagon3D3.HEIC)
-![pentagonBuilt](Projects/Project1/media/photos/pentagon3D4.HEIC)
-3. write code for the lights to fade
-```ino
-int ledPin1 = 3;    // LED connected to digital pin 3 and 9
-int ledPin2 = 9;
-int fadeDel = 1;
-int lightDarkDel = 2000;
-double fadeChng = 0.075;
-double fadeValue = 0;
+#### Structure
+I used a dodecahedron [template](https://www.templatemaker.nl/en/#section-platonic-solids) to create the "shade" for the lights. I cut stars, moons, and clouds into the panels that would appear on the upper half, with the intention that the light would shine to the walls in such shapes. The cuts were made using the cricuit cutter. I elected not to dim the lights with druler paper because in dark enough settings the device would work as a nightlight. 
 
-//need to fix the rapid start of the light coming back on
-void setup() {
-    pinMode(ledPin1, OUTPUT);
-    digitalWrite(ledPin1, LOW);
+add images of it flat and put together
 
-    pinMode(ledPin2, OUTPUT); //set pin 2 as OUTPUT
-    digitalWrite(ledPin2, LOW);
-}
+<br>
 
-//short leg is flat side, and long side goes in row with cathode
+#### Circuit
 
-void loop() {
-  // fade in from min to max in increments of 5 points:
+add circuit
 
-  for (fadeValue; fadeValue <= 255; fadeValue += fadeChng) {
-        // wait for fadeDel milliseconds to see the dimming effect
-        delay(fadeDel);
-        // sets the value (range from 0 to 255):
-        analogWrite(ledPin1, fadeValue);
+<br>
 
-        // sets the value (range from 0 to 255):
-        analogWrite(ledPin2, fadeValue);
-  }
-
- //delay(lightDarkDel);
-
-  // fade out from max to min in increments of 0.1 points:
-  for (fadeValue; fadeValue >= 0; fadeValue -= fadeChng) {
-        // sets the value (range from 0 to 255):
-        analogWrite(ledPin1, fadeValue);
-
-        // sets the value (range from 0 to 255):
-        analogWrite(ledPin2, fadeValue);
-
-        // wait for fadeDel milliseconds to see the dimming effect
-        delay(fadeDel);
-  }
-
-  delay(lightDarkDel);
+#### [Code](code/project1/project1.ino)
+The code features 3 modes with a calming fade that is inteaded for people to breathe with to relax
+- 1 press = lights turn on and stay on
+- 2 press = lights in the fade sequence
+- 3 press = turn the lights off until pressed again
 
 
-
-
-}
-
-```
-
-4. wire up the breadboards
-# add iimages
-5. extend leds and rewire
-6. run
-<img src="media/videos/nightlight.gif" width="400px">
