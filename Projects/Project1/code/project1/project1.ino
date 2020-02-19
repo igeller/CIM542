@@ -1,51 +1,91 @@
 int ledPin1 = 3;    // LED connected to digital pin 3 and 9
-int ledPin2 = 9;
-int fadeDel = 1;
+int ledPin2 = 6;
+int ledPin3 = 9; 
+int pushButton = 2;
+
+boolean buttonPushed = false;
+int mode = 0;
+
+long pMillis = 0;
+int interval = 10;
+boolean flipFlop = false;
+double counter = 0;
+
 int lightDarkDel = 2000;
-double fadeChng = 0.075;
+double fadeChngDwn = 1;
+double fadeChngUp = 0.5;
 double fadeValue = 0;
 
-//need to fix the rapid start of the light coming back on
+//short leg is flat side, and long side goes in row with resistor
+
+
 void setup() {
+
+  Serial.begin(9600);
+    pinMode(pushButton, INPUT);
     pinMode(ledPin1, OUTPUT); 
-    digitalWrite(ledPin1, LOW);
+//    digitalWrite(ledPin1, LOW);
 
     pinMode(ledPin2, OUTPUT); //set pin 2 as OUTPUT
-    digitalWrite(ledPin2, LOW);
+//    digitalWrite(ledPin2, LOW);
+
+    pinMode(ledPin3, OUTPUT); //set pin 2 as OUTPUT
 }
 
-//short leg is flat side, and long side goes in row with cathode
 
 void loop() {
-  // fade in from min to max in increments of 5 points:
-  
-  for (fadeValue; fadeValue <= 255; fadeValue += fadeChng) {
-        // wait for fadeDel milliseconds to see the dimming effect
-        delay(fadeDel);
-        // sets the value (range from 0 to 255):
-        analogWrite(ledPin1, fadeValue);
 
-        // sets the value (range from 0 to 255):
-        analogWrite(ledPin2, fadeValue);
+  //button stuff so we need a counter
+  int buttonState = digitalRead(pushButton);
+  if(buttonState == 1){ // light on
+    buttonPushed = true;
   }
 
- //delay(lightDarkDel);
-
-  // fade out from max to min in increments of 0.1 points:
-  for (fadeValue; fadeValue >= 0; fadeValue -= fadeChng) {
-        // sets the value (range from 0 to 255):
-        analogWrite(ledPin1, fadeValue);
-
-        // sets the value (range from 0 to 255):
-        analogWrite(ledPin2, fadeValue);
-        
-        // wait for fadeDel milliseconds to see the dimming effect
-        delay(fadeDel);
+  if(buttonState == 0 && buttonPushed == true){ //light off
+    buttonPushed = false;
+    mode++;
   }
-  
-  delay(lightDarkDel);
+
+  if(mode == 0){ //light off
+      digitalWrite(ledPin1, LOW);
+      digitalWrite(ledPin2, LOW);
+      digitalWrite(ledPin3, LOW);
+  }else if(mode == 1){ // light on
+      digitalWrite(ledPin1, HIGH);
+      digitalWrite(ledPin2, HIGH);
+      digitalWrite(ledPin3, HIGH);
+      counter = 0;
+  }else if(mode == 2){ //pattern on
+      Serial.println(mode);
+      millisPat();
+  }else{
+       mode = 0;  
+  }   
+}
+
+void millisPat() {
+  if (millis() - pMillis >= interval) {
+    pMillis = millis();
+    if (flipFlop == false) {
+      counter += fadeChngUp;
+    } else {
+      counter -= fadeChngDwn;
+    }
+    Serial.println(counter);
+  }
 
 
+  analogWrite(ledPin1, counter);
+    analogWrite(ledPin2, counter);
+  analogWrite(ledPin3, counter);
 
-    
+
+  if (counter >= 255) {
+    flipFlop = true;
+  }
+
+  if(counter <= 0){
+    flipFlop = false;
+    delay(2000);
+  }
 }
