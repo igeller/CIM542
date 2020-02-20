@@ -1,3 +1,3 @@
 # Projects
 
-- [Project 1: Light and Emotion](/Projects/Project1) (2/18/2020)
+- [Project 1: Light and Emotion](/Projects/Project1) (2/20/2020)
