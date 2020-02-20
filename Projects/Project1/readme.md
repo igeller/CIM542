@@ -8,6 +8,7 @@ To represent the emotion of being lulled into sleep I generated a nightlight wit
 <br>
 
 #### Video
+![gif](/media/videos/finalMovie.gif)
 
 <br>
 
