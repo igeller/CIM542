@@ -15,11 +15,12 @@ The goal of this project is to create a fun analog interface. Think of a toy, ga
 #### Structure
 By taking apart my old iPenguin [image of toy](https://thumbs.worthpoint.com/zoom/images2/1/0713/05/cy-penguin-2006-hasbro-mp3-ipod_1_0501ae3b3c665a5925e35c93ff3f1eab.jpg) I worked to preserve the normal motorfunction but add the capability of the clock. I had to remove bits of its inner housing becuase the opaque white belly was not thin enough to clearly show the numbers on the clock. I am using small screws in place of original plastic studs in order to hold parts in place. I preserved the buttons the toy came with but repurposed them as needed.
 
-![tail](media/photo/apartTail.png)
-<!-- ![3d1](media/photos/structure3D1.jpg)
-![3d2](media/photos/structure3D2.jpg)
-![3d3](media/photos/structure3D3.jpg)
-![3d4](media/photos/structure3D4.jpg) -->
+<img src="./media/photo/apartTail.png" height="500">
+<img src="./media/photo/apartcircuitAndMotor.png" height="500">
+<img src="./media/photo/apartFeetAndFrontOfBody.png" height="500">
+<img src="https://thumbs.worthpoint.com/zoom/images2/1/0713/05/cy-penguin-2006-hasbro-mp3-ipod_1_0501ae3b3c665a5925e35c93ff3f1eab.jpg" height="500">
+
+
 
 
 
@@ -42,8 +43,11 @@ By taking apart my old iPenguin [image of toy](https://thumbs.worthpoint.com/zoo
 #### [Code](code/project2/finalCode/timeSerialPDE.ino)
 The code features 1 mode where the light dims and brightens according to the light that enters through the clear housing. It should automatically dim the digits on the clock but it does not always work, so there is an LED near the tail to display how the light should change.
 
-
 <br>
+
+#### [onShape](https://cad.onshape.com/documents/61008bd472f8507714109f0e/w/44c81a49c0ab38aae9e49e19/e/344895309297a4d64a855e7c)
+As you can see in the image below, the original housing has little nubs to help holding the motor, and circuit and other pices in place. Since I had to remove the inner housing i designed one of the nubs, specifically the middle ones for the arms, so that they would flap properly when the motor runs. Since the design is roughly the same for each nub, I would just modify the design in the link listed above.
+
 
 #### Issues
 - To be honest I should have spent more time on the project but corona has really reduced my motivation so I feel I did not give this project my all. I am happy with the result becuase it is still neat but I had a really big vision and I did not allow enough time to see it through
