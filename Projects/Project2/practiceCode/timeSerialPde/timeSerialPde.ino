@@ -17,10 +17,10 @@
 #define TIME_HEADER  "T"   // Header tag for serial time sync message
 #define TIME_REQUEST  7    // ASCII bell character requests a time sync message 
 
-int ledPin = 13;
+int ledPin = 3;
 
 int pinA = 2;
-int pinB = 3;
+int pinB = 13;
 int pinC = 4;
 int pinD = 5;
 int pinE = 12;
@@ -32,7 +32,7 @@ int D2 = 10;
 int D3 = 11;
 int D4 = 6;
 
-String time [4] = {};
+char time [4] = {};
 
 
 //Constants
@@ -73,12 +73,6 @@ void setup()  {
 
 void loop() {
 
-
-  //  analogWrite(ledPin, value);
-  //  if(v >= value+10 || v <= value-10){
-  //    Serial.println("big change");
-  //  }
-
   if (Serial.available()) {
     processSyncMessage();
   }
@@ -86,9 +80,9 @@ void loop() {
     digitalClockDisplay();
   }
   if (timeStatus() == timeSet) {
-    digitalWrite(13, HIGH); // LED on if synced
+    analogWrite(ledPin, analogRead(pResistor)); // LED on if synced
   } else {
-    digitalWrite(13, LOW);  // LED off if needs refresh
+    digitalWrite(ledPin, LOW);  // LED off if needs refresh
   }
 
 
@@ -139,25 +133,25 @@ time_t requestSync()
 
 void getTimeArr(String hr, String min) {
   if (hr.length() == 2) {
-    time[0] = int(hr.charAt(0));
+    time[0] = hr.charAt(0);
     time[1] = hr.charAt(1);
   } else {
-    time[0] = "0";
-    time[1] = min.charAt(0);
+    time[0] = '0';
+    time[1] = hr.charAt(0);
   }
 
   if (min.length() == 2) {
     time[2] = min.charAt(0);
     time[3] = min.charAt(1);
   } else {
-    time[2] = "0";
+    time[2] = '0';
     time[3] = min.charAt(0);
   }
 
 }
 
 void setTimeBoard() {
-  setD1("2", 1);//time[0], 1);
+  setD1(time[0], 1);//time[0], 1);
   setD1(time[1], 2);
   setD1(time[2], 3);
   setD1(time[3], 4);
@@ -165,34 +159,37 @@ void setTimeBoard() {
 
 void setSeg(int seg) {
   delay(1);
-  if (seg == 1) {
-    analogWrite(D1, 100);
-    digitalWrite(D2, HIGH);
-    digitalWrite(D3, HIGH);
-    digitalWrite(D4, HIGH);
+  if (seg == 1) {       
+    analogWrite(D1, analogRead(pResistor)/4);
+    analogWrite(D2, 255);
+    analogWrite(D3, 255);
+    analogWrite(D4, 255);
   }
   else if (seg == 2) {
-    digitalWrite(D1, HIGH);
-    digitalWrite(D2, LOW);
-    digitalWrite(D3, HIGH);
-    digitalWrite(D4, HIGH);
+
+    analogWrite(D1, 255);
+    analogWrite(D2, analogRead(pResistor)/4);    
+    analogWrite(D3, 255);
+    analogWrite(D4, 255);
   }
  else if (seg == 3) {
-    analogWrite(D1, HIGH);
-    digitalWrite(D2, HIGH);
-    digitalWrite(D3, LOW);
-    digitalWrite(D4, HIGH);
+
+    analogWrite(D1, 255);
+    analogWrite(D2, 255);
+    analogWrite(D3, analogRead(pResistor)/4);
+    analogWrite(D4, 255);
+
   }
   else if (seg == 4) {
-    digitalWrite(D1, HIGH);
-    digitalWrite(D2, HIGH);
-    digitalWrite(D3, HIGH);
-    analogWrite(D4, 150);
+    analogWrite(D1, 255);
+    analogWrite(D2, 255);
+    analogWrite(D3, 255);
+    analogWrite(D4, analogRead(pResistor)/4);
   }
 }
 
-void setD1(String t, int seg) {
-  switch (t.charAt(0)) {
+void setD1(char t, int seg) {
+  switch (t) {
     case '0':
       setSeg(seg);
       digitalWrite(pinA, HIGH);
@@ -217,7 +214,7 @@ void setD1(String t, int seg) {
       setSeg(seg);
       digitalWrite(pinA, HIGH);
       digitalWrite(pinB, HIGH);
-      digitalWrite(pinC, 0);
+      digitalWrite(pinC, LOW);
       digitalWrite(pinD, HIGH);
       digitalWrite(pinE, HIGH);
       digitalWrite(pinF, LOW);
@@ -275,7 +272,6 @@ void setD1(String t, int seg) {
       return;
     case '8':
       setSeg(seg);
-      Serial.println("8?!?!?!?");
       digitalWrite(pinA, HIGH);
       digitalWrite(pinB, HIGH);
       digitalWrite(pinC, HIGH);
