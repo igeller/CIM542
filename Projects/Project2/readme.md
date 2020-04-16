@@ -8,7 +8,7 @@ The goal of this project is to create a fun analog interface. Think of a toy, ga
 <br>
 
 #### Video
-![gif]()
+![beforeHousing](./media/video/testing.gif)
 
 <br>
 
@@ -18,11 +18,7 @@ By taking apart my old iPenguin [image of toy](https://thumbs.worthpoint.com/zoo
 <img src="./media/photo/apartTail.png" height="500">
 <img src="./media/photo/apartcircuitAndMotor.png" height="500">
 <img src="./media/photo/apartFeetAndFrontOfBody.png" height="500">
-<img src="https://thumbs.worthpoint.com/zoom/images2/1/0713/05/cy-penguin-2006-hasbro-mp3-ipod_1_0501ae3b3c665a5925e35c93ff3f1eab.jpg" height="500">
-
-
-
-
+<img src="https://i.ytimg.com/vi/Si2wuA8wWqk/maxresdefault.jpg" width="375">
 
 <br>
 
@@ -33,10 +29,8 @@ By taking apart my old iPenguin [image of toy](https://thumbs.worthpoint.com/zoo
 - 1 10k resistor
 - 4segment 7 disit display
 
-![beforePlacedInHousing](media/photos/circuitBirdsEye.jpg)
-![beforePlacedInHousing](media/photos/circuitSideView.jpg)
-![final steup](media/photos/finalSetup.jpg)
-
+<img src="./media/photo/beforeHousing.png" height="500">
+<img src="./media/photo/inHousing.png" height="500">
 
 <br>
 
@@ -47,6 +41,8 @@ The code features 1 mode where the light dims and brightens according to the lig
 
 #### [onShape](https://cad.onshape.com/documents/61008bd472f8507714109f0e/w/44c81a49c0ab38aae9e49e19/e/344895309297a4d64a855e7c)
 As you can see in the image below, the original housing has little nubs to help holding the motor, and circuit and other pices in place. Since I had to remove the inner housing i designed one of the nubs, specifically the middle ones for the arms, so that they would flap properly when the motor runs. Since the design is roughly the same for each nub, I would just modify the design in the link listed above.
+
+<img src="./media/photo/whiteHousingRemoved.png" height="500">
 
 
 #### Issues
