@@ -54,6 +54,6 @@ As you can see in the image below, the original housing has little nubs to help 
 - The original wiring for the toy was VERY flimsy and broke a few times 
 - The clock portion flickers. Even after trying a multitude of different brightnesses, configurations with resistors and playing with delays I was not able to reduce it anymore.
 - Sometimes the numbers do not show correctly but when tested as individuals, not where digits are passed, they always display perfectly. I believe part of this is due to how difficult it was to display all 4 segments with different numbers at 1 time. 
-- When I was doing my final touches and soldering the final pieces, the wires snapped from the toy's original motor so it no longer worked. Below is what happened when the original wiring of the toy was working (click the link and download so you can hear the sound of the motor moving, becuase it was not connected to the feet and arms so the movement is diffuicult to see.) [video](/media/video/motor.MOV)
+- When I was doing my final touches and soldering the final pieces, the wires snapped from the toy's original motor so it no longer worked. Below is what happened when the original wiring of the toy was working (click the link and download so you can hear the sound of the motor moving, becuase it was not connected to the feet and arms so the movement is diffuicult to see.) [video](./media/video/motor.MOV)
 
 
