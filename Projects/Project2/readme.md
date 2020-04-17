@@ -10,6 +10,8 @@ The goal of this project is to create a fun analog interface. Think of a toy, ga
 #### Video
 ![beforeHousing](./media/video/testing.gif)
 
+Unfortunately, after I rewired within the housing I must have mixed up wires and I am not sure where so I only have the above video to demonstrate the working code. Just imagine that clock is within the stomach of the penguin. 
+
 <br>
 
 #### Structure
@@ -30,11 +32,12 @@ By taking apart my old iPenguin [image of toy](https://thumbs.worthpoint.com/zoo
 - 4segment 7 disit display
 
 <img src="./media/photo/beforeHousing.png" height="500">
-<img src="./media/photo/inHousing.png" height="500">
+<img src="./media/photo/inHousing1.png" height="500">
+<img src="./media/photo/inHousing2.png" height="500">
+
 
 <br>
-
-#### [Code](code/project2/finalCode/timeSerialPDE.ino)
+#### [Code](code/Project2/finalCode/timeSerialPDE.ino)
 The code features 1 mode where the light dims and brightens according to the light that enters through the clear housing. It should automatically dim the digits on the clock but it does not always work, so there is an LED near the tail to display how the light should change.
 
 <br>
@@ -51,5 +54,6 @@ As you can see in the image below, the original housing has little nubs to help 
 - The original wiring for the toy was VERY flimsy and broke a few times 
 - The clock portion flickers. Even after trying a multitude of different brightnesses, configurations with resistors and playing with delays I was not able to reduce it anymore.
 - Sometimes the numbers do not show correctly but when tested as individuals, not where digits are passed, they always display perfectly. I believe part of this is due to how difficult it was to display all 4 segments with different numbers at 1 time. 
+- When I was doing my final touches and soldering the final pieces, the wires snapped from the toy's original motor so it no longer worked. Below is what happened when the original wiring of the toy was working (click the link and download so you can hear the sound of the motor moving, becuase it was not connected to the feet and arms so the movement is diffuicult to see.) [video](/media/video/motor.MOV)
 
 
