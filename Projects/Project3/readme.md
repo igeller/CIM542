@@ -59,7 +59,7 @@ By taking apart my old iPenguin [image of toy](https://thumbs.worthpoint.com/zoo
 
 
 <br>
-#### [Code](./finalCode/finalCode/sketch_apr30a/sketch_apr30a.ino)
+#### [Code](/finalCode/finalCode/sketch_apr30a/sketch_apr30a.ino)
 The code features 1 mode where the light dims and brightens according to the light that enters through the clear housing. It automatically dim the digits on the clock and there is an LED near the tail to display how the light changes. In addition there is are new libraries added sevenseg and IRRemote which helped set digits without having to identify each pin. The libraries added greatly reduced the complexity of the code
 
 <br>
