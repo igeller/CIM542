@@ -1,5 +1,8 @@
 {
     "board": "arduino:avr:uno",
-    "port": "/dev/tty.usbmodem14501",
-    "sketch": "Projects/Project2/practiceCode/testingPhotocell/testingPhotocell.ino"
+    "port": "/dev/tty.usbmodem14301",
+    "sketch": "Projects/Project2/finalCode/testing/sketch_apr30a/sketch_apr30a.ino",
+    "programmer": "AVR ISP",
+    "output": "../build",
+    "debugger": "jlink.cfg"
 }

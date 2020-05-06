@@ -1,21 +1,12 @@
-#include "Time.h"
-#include "TimeLib.h"
-
-/*
-   TimeSerial.pde
-   example code illustrating Time library set through serial port messages.
-
-   Messages consist of the letter T followed by ten digit time (as seconds since Jan 1 1970)
-   you can send the text on the next line using Serial Monitor to set the clock to noon Jan 1 2013
-  T1357041600
-
-   A Processing example sketch to automatically send the messages is included in the download
-   On Linux, you can use "date +T%s\n > /dev/ttyACM0" (UTC time zone)
-*/
-
+#include "SevSeg.h"
+#include "Time.h";
+#include "TimeLib.h";
+#include "SevSeg.h";
 
 #define TIME_HEADER  "T"   // Header tag for serial time sync message
 #define TIME_REQUEST  7    // ASCII bell character requests a time sync message 
+
+SevSeg sevseg; //Instantiate a seven segment controller object
 
 int ledPin = 3;
 
@@ -32,77 +23,184 @@ int D2 = 10;
 int D3 = 11;
 int D4 = 6;
 
+const int pResistor = A0;
+int value;
 char time [4] = {};
 
+void setup() {
+  byte numDigits = 4;
+  byte digitPins[] = {9, 10, 11, 6};
+  byte segmentPins[] = {2, 13, 4, 5, 12, 7, 8};
+  bool resistorsOnSegments = false; // 'false' means resistors are on digit pins
+  byte hardwareConfig = COMMON_CATHODE; // See README.md for options
+  bool updateWithDelays = false; // Default 'false' is Recommended
+  bool leadingZeros = false; // Use 'true' if you'd like to keep the leading zeros
+  bool disableDecPoint = true; // Use 'true' if your decimal point doesn't exist or isn't connected
+  
+  sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments,
+  updateWithDelays, leadingZeros, disableDecPoint);
+  sevseg.setBrightness(90);
+    pinMode(pResistor, INPUT);// Set pResistor - A0 pin as an input (optional)
 
-//Constants
-const int pResistor = A0; // Photoresistor at Arduino analog pin A0
-
-//Variables
-int value;          // Store value from photoresistor (0-1023)
-int v;
-
-
-
-
-void setup()  {
-  Serial.begin(9600);
-  //  while (!Serial) ; // Needed for Leonardo only
-  pinMode(ledPin, OUTPUT);
-
-  pinMode(pinA, OUTPUT);
-  pinMode(pinB, OUTPUT);
-  pinMode(pinC, OUTPUT);
-  pinMode(pinD, OUTPUT);
-  pinMode(pinE, OUTPUT);
-  pinMode(pinF, OUTPUT);
-  pinMode(pinG, OUTPUT);
-
-  pinMode(D1, OUTPUT);
-  pinMode(D2, OUTPUT);
-  pinMode(D3, OUTPUT);
-  pinMode(D4, OUTPUT);
-
-  pinMode(pResistor, INPUT);// Set pResistor - A0 pin as an input (optional)
-
-
-  setSyncProvider( requestSync);  //set function to call when sync required
-  Serial.println("Waiting for sync message");
-  //  v = analogRead(pResistor);
 }
 
 void loop() {
-    int val =analogRead(pResistor);
-
-  if (Serial.available()) {
-    processSyncMessage();
-  }
-  if (timeStatus() != timeNotSet) {
-    digitalClockDisplay();
-  }
-  if (timeStatus() == timeSet) {
-    analogWrite(ledPin, val); // LED on if synced
-  } else {
-    digitalWrite(ledPin, val)
-    ;  // LED off if needs refresh
+  static unsigned long timer = millis();
+  static int deciSeconds = 0;
+  
+  if (millis() - timer >= 100) {
+    timer += 100;
+    deciSeconds++; // 100 milliSeconds is equal to 1 deciSecond
+    
+    if (deciSeconds == 10000) { // Reset to 0 after counting for 1000 seconds.
+      deciSeconds=0;
+    }
+    sevseg.setNumber(deciSeconds, 1);
   }
 
-
-
-
-
-
+  sevseg.refreshDisplay(); // Must run repeatedly
 }
+
+/// END ///
+
+
+
+
+//#include <SevSeg.h>
+//
+//#include "Time.h";
+//#include "TimeLib.h";
+//#include "SevSeg.h";
+//
+///*
+//   TimeSerial.pde
+//   example code illustrating Time library set through serial port messages.
+//
+//   Messages consist of the letter T followed by ten digit time (as seconds since Jan 1 1970)
+//   you can send the text on the next line using Serial Monitor to set the clock to noon Jan 1 2013
+//  T1357041600
+//
+//   A Processing example sketch to automatically send the messages is included in the download
+//   On Linux, you can use "date +T%s\n > /dev/ttyACM0" (UTC time zone)
+//*/
+//
+//
+//#define TIME_HEADER  "T"   // Header tag for serial time sync message
+//#define TIME_REQUEST  7    // ASCII bell character requests a time sync message 
+//
+//int ledPin = 3;
+//
+//int pinA = 2;
+//int pinB = 13;
+//int pinC = 4;
+//int pinD = 5;
+//int pinE = 12;
+//int pinF = 7;
+//int pinG = 8;
+//
+//int D1 = 9;
+//int D2 = 10;
+//int D3 = 11;
+//int D4 = 6;
+
+//int D1 = A1;
+//int D2 = A2;
+//int D3 = A3;
+//int D4 = A4;
+//
+//SevSeg sevseg;
+//char time [4] = {};
+//
+//
+////Constants
+//const int pResistor = A0; // Photoresistor at Arduino analog pin A0
+//
+////Variables
+//int value;          // Store value from photoresistor (0-1023)
+//int v;
+//
+//byte numDigits = 4;
+//  byte digitPins [] = {9, 10, 11, 6};
+//  byte segmentPins[] = {2, 4, 5, 7, 8, 12, 13};
+//
+//  
+//  bool resistorsOnSegments = false; // 'false' means resistors are on digit pins
+//  byte hardwareConfig = COMMON_ANODE; // See README.md for options
+//  bool updateWithDelays = false; // Default 'false' is Recommended
+//  bool leadingZeros = false; // Use 'true' if you'd like to keep the leading zeros
+//  bool disableDecPoint = true; // Use 'true' if your decimal point doesn't exist or isn't connected. Then, you only need to specify 7 segmentPins[]
+//
+//
+//
+//
+//void setup()  {
+//  Serial.begin(9600);
+//  //  while (!Serial) ; // Needed for Leonardo only
+//  pinMode(ledPin, OUTPUT);
+//
+//  pinMode(pinA, OUTPUT);
+//  pinMode(pinB, OUTPUT);
+//  pinMode(pinC, OUTPUT);
+//  pinMode(pinD, OUTPUT);
+//  pinMode(pinE, OUTPUT);
+//  pinMode(pinF, OUTPUT);
+//  pinMode(pinG, OUTPUT);
+//
+//  pinMode(D1, OUTPUT);
+//  pinMode(D2, OUTPUT);
+//  pinMode(D3, OUTPUT);
+//  pinMode(D4, OUTPUT);
+//
+//  pinMode(pResistor, INPUT);// Set pResistor - A0 pin as an input (optional)
+//
+//  sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments,
+//  updateWithDelays, leadingZeros, disableDecPoint);
+////  setSyncProvider( requestSync);  //set function to call when sync required
+//  Serial.println("Waiting for sync message");
+//  //  v = analogRead(pResistor);
+//
+// 
+//
+//}
+//
+//void loop() {
+//    value =analogRead(pResistor);
+////    Serial.println("testing");
+//   Serial.println(value);
+//  if (Serial.available()) {
+//    processSyncMessage();
+//  }
+//  if (timeStatus() != timeNotSet) {
+////     getTimeArr(String(hour()), String(minute()));
+////  setTimeBoard();
+//  sevseg.setSegments(3144); // Displays '3.141'
+//
+//  sevseg.setBrightness(value);
+//
+//
+//  }
+//  if (timeStatus() == timeSet) {
+//    analogWrite(ledPin, value); // LED on if synced
+//  } else {
+//    analogWrite(ledPin, value)
+//    ;  // LED off if needs refresh
+//  }
+//
+//
+//
+//
+//
+//
+//}
 
 void digitalClockDisplay() {
 //   digital clock display of the time
-  Serial.print(hour());
-  printDigits(minute());
-  printDigits(second());
-  Serial.println();
+    Serial.print(hour());
+    printDigits(minute());
+    printDigits(second());
+//  Serial.println();
 
-  getTimeArr(String(hour()), String(minute()));
-  setTimeBoard();
+ 
 }
 
 void printDigits(int digits) {
@@ -160,9 +258,11 @@ void setTimeBoard() {
 }
 
 void setSeg(int seg) {
-  delay(1);
+//  Serial.println("test");
+//  Serial.println(value);
+  delay(3);
   if (seg == 1) {       
-    analogWrite(D1, analogRead(pResistor)/4);
+    analogWrite(D1, value);
     analogWrite(D2, 255);
     analogWrite(D3, 255);
     analogWrite(D4, 255);
@@ -170,7 +270,7 @@ void setSeg(int seg) {
   else if (seg == 2) {
 
     analogWrite(D1, 255);
-    analogWrite(D2, analogRead(pResistor)/4);    
+    analogWrite(D2, value);    
     analogWrite(D3, 255);
     analogWrite(D4, 255);
   }
@@ -178,7 +278,7 @@ void setSeg(int seg) {
 
     analogWrite(D1, 255);
     analogWrite(D2, 255);
-    analogWrite(D3, analogRead(pResistor)/4);
+    analogWrite(D3, value);
     analogWrite(D4, 255);
 
   }
@@ -186,7 +286,7 @@ void setSeg(int seg) {
     analogWrite(D1, 255);
     analogWrite(D2, 255);
     analogWrite(D3, 255);
-    analogWrite(D4, analogRead(pResistor)/4);
+    analogWrite(D4, value);
   }
 }
 

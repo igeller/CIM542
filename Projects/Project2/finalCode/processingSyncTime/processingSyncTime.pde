@@ -34,9 +34,9 @@ Serial myPort;     // Create object from Serial class
 
 void setup() {  
   size(200, 200);
-  println(Serial.list());
+  println((Object[])Serial.list());
   println(" Connecting to -> " + Serial.list()[portIndex]);
-  myPort = new Serial(this,Serial.list()[portIndex], 9600);
+  myPort = new Serial(this,Serial.list()[portIndex], 9600 );
   println(getTimeNow());
 }
 
@@ -58,8 +58,8 @@ void draw()
            ; //igonore
        else if(val == CR)           
          println();
-       else  
-         print(val); // echo everying but time request
+       //else  
+       print(val); // echo everying but time request
     }
   }  
 }
@@ -76,7 +76,7 @@ void sendTimeMessage(String header, long time) {
   myPort.write('\n');  
 }
 
-long getTimeNow(){
+ long getTimeNow(){
   // java time is in ms, we want secs    
   Date d = new Date();
   Calendar cal = new GregorianCalendar();
