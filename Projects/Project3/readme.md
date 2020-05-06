@@ -11,20 +11,20 @@ I also used this project to fix project two and dd some functionality
 
 #### Videos
 Time Changing: no more blinking
-![beforeHousing](./media/final/time.gif)
+![timeChanging](./media/final/video/timeChange.gif)
 
 I fixed the wiring and added resistors to help reduce flickering. I also reduced the complexity of code by using a library for the 7 segment display called sevensegment which meant I did not need to assign the letters and numbers based on pins.
 
 Power:
-
+![power](./media/final/video/powerOnOff.gif)
 added IR receiver and remote to add on/off functionality.
 
 Timer:
-
+![timer](./media/final/video/timer.gif)
 Added the IR receiver and remote and programmed the remote to display a timer and when the timer completes it returns to the clock. I only implemented the code with clicking the "1" button, but if I had more time I would implement it with other numbers to have longer and shorter timers. Currently the code flickers a LOT and I only have a much shorter time set. If you run the program using the serial monitor, you can see that it prints the correct number but I was having trouble displaying it.
 
 Dimming:
-
+![dim](./media/final/vido/dimming.gif)
 Automatic dimming of display as the light changes which is nice for using the clock at night
 
 <br>
@@ -52,6 +52,10 @@ By taking apart my old iPenguin [image of toy](https://thumbs.worthpoint.com/zoo
 <img src="./media/photo/beforeHousing.png" height="500">
 <img src="./media/photo/inHousing1.png" height="500">
 <img src="./media/photo/inHousing2.png" height="500">
+
+<img src="./media/final/photo/img1.png" height="500">
+<img src="./media/final/photo/img2.png" height="500">
+<img src="./media/final/photo/img3.png" height="500">
 
 
 <br>
