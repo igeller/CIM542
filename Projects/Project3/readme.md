@@ -24,7 +24,7 @@ Timer:
 Added the IR receiver and remote and programmed the remote to display a timer and when the timer completes it returns to the clock. I only implemented the code with clicking the "1" button, but if I had more time I would implement it with other numbers to have longer and shorter timers. Currently the code flickers a LOT and I only have a much shorter time set. If you run the program using the serial monitor, you can see that it prints the correct number but I was having trouble displaying it.
 
 Dimming:
-![dim](./media/final/vido/dimming.gif)
+![dim](./media/final/video/dimming.gif)
 Automatic dimming of display as the light changes which is nice for using the clock at night
 
 <br>
