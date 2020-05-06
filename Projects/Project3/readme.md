@@ -1,16 +1,31 @@
-# Project 2: Penguin Clock - Playful Interfaces
+# Project 3: Penguin Clock and Timer - Helpful
 
 #### Project Info:
-The goal of this project is to create a fun analog interface. Think of a toy, gag, carnival games, musical instruments, etc. Try finding items around that house to help you build your projects. As you are building your project, think about a component you would need to 3D print. Using the tools you have, design your part on Onshape.
+The goal for this project is to make a helpful or not helpful robot. Choose a task in your day to day. Create a device that can help you achieve that task. 
+
+I also used this project to fix project two and dd some functionality
 
 
 
 <br>
 
-#### Video
-![beforeHousing](./media/video/testing.gif)
+#### Videos
+Time Changing: no more blinking
+![beforeHousing](./media/final/time.gif)
 
-Unfortunately, after I rewired within the housing I must have mixed up wires and I am not sure where so I only have the above video to demonstrate the working code. Just imagine that clock is within the stomach of the penguin. 
+I fixed the wiring and added resistors to help reduce flickering. I also reduced the complexity of code by using a library for the 7 segment display called sevensegment which meant I did not need to assign the letters and numbers based on pins.
+
+Power:
+
+added IR receiver and remote to add on/off functionality.
+
+Timer:
+
+Added the IR receiver and remote and programmed the remote to display a timer and when the timer completes it returns to the clock. I only implemented the code with clicking the "1" button, but if I had more time I would implement it with other numbers to have longer and shorter timers. Currently the code flickers a LOT and I only have a much shorter time set. If you run the program using the serial monitor, you can see that it prints the correct number but I was having trouble displaying it.
+
+Dimming:
+
+Automatic dimming of display as the light changes which is nice for using the clock at night
 
 <br>
 
@@ -29,7 +44,10 @@ By taking apart my old iPenguin [image of toy](https://thumbs.worthpoint.com/zoo
 - 1 led (red)
 - 1 photoresistor
 - 1 10k resistor
+- 3 330 ohm resistors
 - 4segment 7 disit display
+- 1 IR receiver
+- 1 remote
 
 <img src="./media/photo/beforeHousing.png" height="500">
 <img src="./media/photo/inHousing1.png" height="500">
@@ -37,8 +55,8 @@ By taking apart my old iPenguin [image of toy](https://thumbs.worthpoint.com/zoo
 
 
 <br>
-#### [Code](code/Project2/finalCode/timeSerialPDE.ino)
-The code features 1 mode where the light dims and brightens according to the light that enters through the clear housing. It should automatically dim the digits on the clock but it does not always work, so there is an LED near the tail to display how the light should change.
+#### [Code](code/Project3/finalCode/finalCode/sketch_apr30a/sketch_apr30a.ino)
+The code features 1 mode where the light dims and brightens according to the light that enters through the clear housing. It automatically dim the digits on the clock and there is an LED near the tail to display how the light changes. In addition there is are new libraries added sevenseg and IRRemote which helped set digits without having to identify each pin. The libraries added greatly reduced the complexity of the code
 
 <br>
 
@@ -49,11 +67,12 @@ As you can see in the image below, the original housing has little nubs to help 
 
 
 #### Issues
+- As usual I my ideas were much larger than what I was capable of doing. I wanted to have buttons sequence off of one another, but even after placing resume functions everywhere the buttons were not able to trigger in the correct places.
+- I also did not give myself enough time to work on the project but I am proud that I managed to get the timer kind of working and returning to the clock while the clock continues keeping time.
+- There is a lot of potential with this device from adding sound and figuring out the remote which could be a fun summer project
 - To be honest I should have spent more time on the project but corona has really reduced my motivation so I feel I did not give this project my all. I am happy with the result becuase it is still neat but I had a really big vision and I did not allow enough time to see it through
 - When I was trying to solder the wires, the solder would not stick for some reason so that was very annoying.
 - The original wiring for the toy was VERY flimsy and broke a few times 
-- The clock portion flickers. Even after trying a multitude of different brightnesses, configurations with resistors and playing with delays I was not able to reduce it anymore.
-- Sometimes the numbers do not show correctly but when tested as individuals, not where digits are passed, they always display perfectly. I believe part of this is due to how difficult it was to display all 4 segments with different numbers at 1 time. 
 - When I was doing my final touches and soldering the final pieces, the wires snapped from the toy's original motor so it no longer worked. Below is what happened when the original wiring of the toy was working (click the link and download so you can hear the sound of the motor moving, becuase it was not connected to the feet and arms so the movement is diffuicult to see.) [video](./media/video/motor.MOV)
 
 
